@@ -55,7 +55,7 @@ public class BoardRepositoryImpl implements BoardCustomRepository{
 				student.name
 			))
 			.from(board)
-			.innerJoin(student).on(board.userNo.eq(student.no).and(student.no.eq(userNo)))
+			.innerJoin(user).on(board.userNo.eq(user.no).and(user.no.eq(userNo)))
 			.orderBy(board.createdAt.desc())
 			.fetch();
 	}
@@ -75,7 +75,7 @@ public class BoardRepositoryImpl implements BoardCustomRepository{
 			))
 			.from(board)
 			.innerJoin(bidding).on(bidding.boardNo.eq(board.no).and(bidding.biddingStatus.eq(BiddingStatus.BIDDING)))
-			.innerJoin(student).on(student.no.eq(board.userNo))
+			.innerJoin(user).on(user.no.eq(board.userNo))
 			.orderBy(board.createdAt.desc())
 			.fetch();
 	}
